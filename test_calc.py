@@ -1,6 +1,6 @@
 import pytest
 
-from calc import add, divide, multiply
+from calc import add, divide, multiply, power
 
 
 def test_add_positive_numbers():
@@ -54,3 +54,19 @@ def test_divide_floats():
 def test_divide_by_zero_raises():
     with pytest.raises(ValueError, match="cannot divide by zero"):
         divide(5, 0)
+
+
+def test_power_positive_exponent():
+    assert power(2, 3) == 8
+
+
+def test_power_zero_exponent():
+    assert power(5, 0) == 1
+
+
+def test_power_negative_exponent():
+    assert power(2, -2) == pytest.approx(0.25)
+
+
+def test_power_fractional_exponent():
+    assert power(4, 0.5) == pytest.approx(2.0)
